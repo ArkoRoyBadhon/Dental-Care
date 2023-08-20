@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import bannerImg from "../assets/pexels-anna-shvets-3845625-min.jpg";
+import bannerImg from "../../assets/pexels-anna-shvets-3845625-min.jpg";
 
 const Banner = () => {
   return (
