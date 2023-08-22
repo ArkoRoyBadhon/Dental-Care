@@ -44,6 +44,7 @@ const ShowCase = () => {
               boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.5)", // Corrected color value
             },
           }}
+          data-aos="zoom-in"
         >
           <EmojiTransportationIcon
             sx={{
@@ -69,6 +70,7 @@ const ShowCase = () => {
               boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.5)", // Corrected color value
             },
           }}
+          data-aos="zoom-in"
         >
           <EmojiTransportationIcon
             sx={{
@@ -94,6 +96,7 @@ const ShowCase = () => {
               boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.5)", // Corrected color value
             },
           }}
+          data-aos="zoom-in"
         >
           <EmojiTransportationIcon
             sx={{
@@ -119,6 +122,7 @@ const ShowCase = () => {
               boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.5)",
             },
           }}
+          data-aos="zoom-in"
         >
           <EmojiTransportationIcon
             sx={{

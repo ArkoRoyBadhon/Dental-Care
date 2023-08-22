@@ -22,14 +22,14 @@ const WelcomeCom = () => {
         }
       }}
     >
-      <Box flex={1}>
+      <Box flex={1} data-aos="fade-right">
         <img
           style={{ width: "400px" }}
           src="https://img.freepik.com/free-photo/attractive-young-male-nutriologist-lab-coat-smiling-against-white-background_662251-2960.jpg"
           alt="photo"
         />
       </Box>
-      <Box flex={1} sx={{ paddingRight: { md: "20px" } }}>
+      <Box flex={1} sx={{ paddingRight: { md: "20px" } }} data-aos="fade-left">
         <Typography
           component="h4"
           fontWeight={500}

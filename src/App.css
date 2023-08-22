@@ -1,13 +1,24 @@
-
-
 .NavLink {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .bannerImg {
-    width:100%;
+  width: 100%;
 }
 
-
-
+/* .responsiveSwiper {
+  @media screen and (max-width: 480px) {
+    .mySwiper {
+      height: "250px";
+      margin: "0px 20px";
+    }
+  }
+  @media screen and (min-width: 481px) {
+    .mySwiper {
+      height: "400px";
+      margin: "0px 80px";
+      background-color: aqua;
+    }
+  }
+} */
 
