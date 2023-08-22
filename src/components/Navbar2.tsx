@@ -8,7 +8,7 @@ import {
   ListItemButton,
   ListItemText,
   Typography,
-  Stack
+  Stack,
 } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import MailIcon from "@mui/icons-material/Mail";
@@ -17,7 +17,6 @@ import ManageHistoryIcon from "@mui/icons-material/ManageHistory";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import { styled } from "@mui/system";
-
 
 const MyDrawer = styled("div")({
   width: 300,
@@ -60,77 +59,102 @@ const Navbar2 = () => {
           </Box>
         </Box>
       </Stack>
-      <Divider sx={{marginX: "10px", marginTop: "14px"}} />
+      <Divider sx={{ marginX: "10px", marginTop: "14px" }} />
       <List>
         <ListItemButton component="a" href="/">
-          <ListItemText sx={{
-                fontWeight: "600",
-                ...(currentPath === "/" ? {
-                  textDecoration: "underline",
-                  color: 'red'
-                }:{
-                  color: "black"
-                }),
-                "&:hover": {
-                  textDecoration: "underline",
-                },
-              }} primary="Home" />
+          <ListItemText
+            sx={{
+              fontWeight: "600",
+              ...(currentPath === "/"
+                ? {
+                    textDecoration: "underline",
+                    color: "red",
+                  }
+                : {
+                    color: "black",
+                  }),
+              "&:hover": {
+                textDecoration: "underline",
+              },
+            }}
+            primary="Home"
+          />
         </ListItemButton>
         <ListItemButton component="a" href="about">
-          <ListItemText sx={{
-                fontWeight: "600",
-                ...(currentPath === "/about" ? {
-                  textDecoration: "underline",
-                  color: 'red'
-                }:{
-                  color: "black"
-                }),
-                "&:hover": {
-                  textDecoration: "underline",
-                },
-              }} primary="About" />
+          <ListItemText
+            sx={{
+              fontWeight: "600",
+              ...(currentPath === "/about"
+                ? {
+                    textDecoration: "underline",
+                    color: "red",
+                  }
+                : {
+                    color: "black",
+                  }),
+              "&:hover": {
+                textDecoration: "underline",
+              },
+            }}
+            primary="About"
+          />
         </ListItemButton>
         <ListItemButton component="a" href="/services">
-          <ListItemText sx={{
-                fontWeight: "600",
-                ...(currentPath === "/services" ? {
-                  textDecoration: "underline",
-                  color: 'red'
-                }:{
-                  color: "black"
-                }),
-                "&:hover": {
-                  textDecoration: "underline",
-                },
-              }} primary="Services" />
+          <ListItemText
+            sx={{
+              fontWeight: "600",
+              ...(currentPath === "/services"
+                ? {
+                    textDecoration: "underline",
+                    color: "red",
+                  }
+                : {
+                    color: "black",
+                  }),
+              "&:hover": {
+                textDecoration: "underline",
+              },
+            }}
+            primary="Services"
+          />
         </ListItemButton>
         <ListItemButton component="a" href="/office">
-          <ListItemText sx={{
-                fontWeight: "600",
-                ...(currentPath === "/office" ? {
-                  textDecoration: "underline",
-                  color: 'red'
-                }:{
-                  color: "black"
-                }),
-                "&:hover": {
-                  textDecoration: "underline",
-                },
-              }} primary="Office Tour" />
+          <ListItemText
+            sx={{
+              fontWeight: "600",
+              ...(currentPath === "/office"
+                ? {
+                    textDecoration: "underline",
+                    color: "red",
+                  }
+                : {
+                    color: "black",
+                  }),
+              "&:hover": {
+                textDecoration: "underline",
+              },
+            }}
+            primary="Office Tour"
+          />
         </ListItemButton>
         <ListItemButton component="a" href="/blog">
-          <ListItemText sx={{
-                fontWeight: "600",
-                ...(currentPath === "/blog" ? {
-                  textDecoration: "underline",
-                  color: 'red'
-                }:{
-                  color: "black"
-                }),
-                "&:hover": {
-                  textDecoration: "underline",
-                },
-              }} primary="Blog" />
+          <ListItemText
+            sx={{
+              fontWeight: "600",
+              ...(currentPath === "/blog"
+                ? {
+                    textDecoration: "underline",
+                    color: "red",
+                  }
+                : {
+                    color: "black",
+                  }),
+              "&:hover": {
+                textDecoration: "underline",
+              },
+            }}
+            primary="Blog"
+          />
         </ListItemButton>
       </List>
     </MyDrawer>
@@ -184,12 +208,14 @@ const Navbar2 = () => {
             <Link
               sx={{
                 fontWeight: "600",
-                ...(currentPath === "/" ? {
-                  textDecoration: "underline",
-                  color: 'red'
-                }:{
-                  color: "black"
-                }),
+                ...(currentPath === "/"
+                  ? {
+                      textDecoration: "underline",
+                      color: "red",
+                    }
+                  : {
+                      color: "black",
+                    }),
                 "&:hover": {
                   textDecoration: "underline",
                 },
@@ -202,12 +228,14 @@ const Navbar2 = () => {
             <Link
               sx={{
                 fontWeight: "600",
-                ...(currentPath === "/about" ? {
-                  textDecoration: "underline",
-                  color: 'red'
-                }:{
-                  color: "black"
-                }),
+                ...(currentPath === "/about"
+                  ? {
+                      textDecoration: "underline",
+                      color: "red",
+                    }
+                  : {
+                      color: "black",
+                    }),
                 "&:hover": {
                   textDecoration: "underline",
                 },
@@ -220,12 +248,14 @@ const Navbar2 = () => {
             <Link
               sx={{
                 fontWeight: "600",
-                ...(currentPath === "/services" ? {
-                  textDecoration: "underline",
-                  color: 'red'
-                }:{
-                  color: "black"
-                }),
+                ...(currentPath === "/services"
+                  ? {
+                      textDecoration: "underline",
+                      color: "red",
+                    }
+                  : {
+                      color: "black",
+                    }),
                 "&:hover": {
                   textDecoration: "underline",
                 },
@@ -238,12 +268,14 @@ const Navbar2 = () => {
             <Link
               sx={{
                 fontWeight: "600",
-                ...(currentPath === "/office" ? {
-                  textDecoration: "underline",
-                  color: 'red'
-                }:{
-                  color: "black"
-                }),
+                ...(currentPath === "/office"
+                  ? {
+                      textDecoration: "underline",
+                      color: "red",
+                    }
+                  : {
+                      color: "black",
+                    }),
                 "&:hover": {
                   textDecoration: "underline",
                 },
@@ -256,12 +288,14 @@ const Navbar2 = () => {
             <Link
               sx={{
                 fontWeight: "600",
-                ...(currentPath === "/blog" ? {
-                  textDecoration: "underline",
-                  color: 'red'
-                }:{
-                  color: "black"
-                }),
+                ...(currentPath === "/blog"
+                  ? {
+                      textDecoration: "underline",
+                      color: "red",
+                    }
+                  : {
+                      color: "black",
+                    }),
                 "&:hover": {
                   textDecoration: "underline",
                 },
@@ -271,11 +305,85 @@ const Navbar2 = () => {
             >
               Blog
             </Link>
+            <Link
+              sx={{
+                fontWeight: "600",
+                ...(currentPath === "/blog"
+                  ? {
+                      textDecoration: "underline",
+                      color: "red",
+                    }
+                  : {
+                      color: "black",
+                    }),
+                "&:hover": {
+                  textDecoration: "underline",
+                },
+              }}
+              underline="none"
+              href="/dashboard"
+            >
+              Dashboard
+            </Link>
           </Box>
-          <Box>
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
             <Box>
               <FacebookIcon />
               <MailIcon />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+              }}
+            >
+              <Link
+                sx={{
+                  fontWeight: "600",
+                  ...(currentPath === "/blog"
+                    ? {
+                        textDecoration: "underline",
+                        color: "red",
+                      }
+                    : {
+                        color: "black",
+                      }),
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                }}
+                underline="none"
+                href="/register"
+              >
+                Register
+              </Link>
+              <Link
+                sx={{
+                  fontWeight: "600",
+                  ...(currentPath === "/blog"
+                    ? {
+                        textDecoration: "underline",
+                        color: "red",
+                      }
+                    : {
+                        color: "black",
+                      }),
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                }}
+                underline="none"
+                href="/login"
+              >
+                Login
+              </Link>
             </Box>
           </Box>
         </Box>
@@ -294,7 +402,7 @@ const Navbar2 = () => {
             sm: "center",
           },
           gap: "10px",
-          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)"
+          boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.1)",
         }}
       >
         <MenuIcon
