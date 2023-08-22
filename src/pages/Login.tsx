@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, TextField, Typography, Button } from "@mui/material";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useLoginUserMutation } from "../redux/features/user/userAPI";
 
 type InputLogin = {
   email: string;
@@ -14,8 +16,27 @@ const CustomLink = styled(NavLink)({
 });
 
 const Login = () => {
+  const [loginUser] = useLoginUserMutation();
+  const navigate = useNavigate();
+
   const { register, handleSubmit } = useForm<InputLogin>();
-  const onSubmit: SubmitHandler<InputLogin> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<InputLogin> = async (data) => {
+    const jsonData = {
+      password: data.password,
+      email: data.email,
+    };
+
+    const loginInfo = {
+      data: jsonData,
+    };
+
+    const result: any = await loginUser(loginInfo);
+
+    if (result?.data?.success) {
+      document.cookie = `accessToken=${result?.data?.data?.accessToken}; HttpOnly; SameSite=Strict; Path=/`;
+      navigate("/");
+    }
+  };
   return (
     <Box
       sx={{
@@ -58,7 +79,11 @@ const Login = () => {
               {...register("password")}
               type="password"
             />
-            <Button type="submit" sx={{ marginTop: "20px" }} variant="contained">
+            <Button
+              type="submit"
+              sx={{ marginTop: "20px" }}
+              variant="contained"
+            >
               Login
             </Button>
             <Typography>

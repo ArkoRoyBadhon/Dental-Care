@@ -17,6 +17,9 @@ import ManageHistoryIcon from "@mui/icons-material/ManageHistory";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import { styled } from "@mui/system";
+import { useAppDispatch, useAppSelector } from "../redux/hook";
+import { useLogOutMutation } from "../redux/features/user/userAPI";
+import { setUser } from "../redux/features/user/userSlice";
 
 const MyDrawer = styled("div")({
   width: 300,
@@ -25,6 +28,9 @@ const MyDrawer = styled("div")({
 const Navbar2 = () => {
   const currentPath = window.location.pathname;
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const { user } = useAppSelector((state) => state.persisted.auth);
+  const dispatch = useAppDispatch();
+  const [logOut] = useLogOutMutation();
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -159,6 +165,11 @@ const Navbar2 = () => {
       </List>
     </MyDrawer>
   );
+
+  const handleLogout = async () => {
+    await logOut(undefined);
+    dispatch(setUser(null));
+  };
 
   return (
     <Box>
@@ -305,26 +316,28 @@ const Navbar2 = () => {
             >
               Blog
             </Link>
-            <Link
-              sx={{
-                fontWeight: "600",
-                ...(currentPath === "/blog"
-                  ? {
-                      textDecoration: "underline",
-                      color: "red",
-                    }
-                  : {
-                      color: "black",
-                    }),
-                "&:hover": {
-                  textDecoration: "underline",
-                },
-              }}
-              underline="none"
-              href="/dashboard"
-            >
-              Dashboard
-            </Link>
+            {user && (
+              <Link
+                sx={{
+                  fontWeight: "600",
+                  ...(currentPath === "/blog"
+                    ? {
+                        textDecoration: "underline",
+                        color: "red",
+                      }
+                    : {
+                        color: "black",
+                      }),
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
+                }}
+                underline="none"
+                href="/dashboard"
+              >
+                Dashboard
+              </Link>
+            )}
           </Box>
           <Box
             sx={{
@@ -337,54 +350,58 @@ const Navbar2 = () => {
               <FacebookIcon />
               <MailIcon />
             </Box>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-              }}
-            >
-              <Link
+            {user ? (
+              <Box sx={{cursor: "pointer"}} onClick={()=> handleLogout()}>Logout</Box>
+            ) : (
+              <Box
                 sx={{
-                  fontWeight: "600",
-                  ...(currentPath === "/blog"
-                    ? {
-                        textDecoration: "underline",
-                        color: "red",
-                      }
-                    : {
-                        color: "black",
-                      }),
-                  "&:hover": {
-                    textDecoration: "underline",
-                  },
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
                 }}
-                underline="none"
-                href="/register"
               >
-                Register
-              </Link>
-              <Link
-                sx={{
-                  fontWeight: "600",
-                  ...(currentPath === "/blog"
-                    ? {
-                        textDecoration: "underline",
-                        color: "red",
-                      }
-                    : {
-                        color: "black",
-                      }),
-                  "&:hover": {
-                    textDecoration: "underline",
-                  },
-                }}
-                underline="none"
-                href="/login"
-              >
-                Login
-              </Link>
-            </Box>
+                <Link
+                  sx={{
+                    fontWeight: "600",
+                    ...(currentPath === "/blog"
+                      ? {
+                          textDecoration: "underline",
+                          color: "red",
+                        }
+                      : {
+                          color: "black",
+                        }),
+                    "&:hover": {
+                      textDecoration: "underline",
+                    },
+                  }}
+                  underline="none"
+                  href="/register"
+                >
+                  Register
+                </Link>
+                <Link
+                  sx={{
+                    fontWeight: "600",
+                    ...(currentPath === "/blog"
+                      ? {
+                          textDecoration: "underline",
+                          color: "red",
+                        }
+                      : {
+                          color: "black",
+                        }),
+                    "&:hover": {
+                      textDecoration: "underline",
+                    },
+                  }}
+                  underline="none"
+                  href="/login"
+                >
+                  Login
+                </Link>
+              </Box>
+            )}
           </Box>
         </Box>
       </Box>

@@ -5,12 +5,18 @@ import { RouterProvider } from "react-router-dom";
 import routes from "./Router/routes";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "./redux/store";
 
 AOS.init();
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-      <RouterProvider router={routes} />
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <RouterProvider router={routes} />
+      </PersistGate>
+    </Provider>
   </React.StrictMode>
 );
