@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { Inbox, Drafts } from "@mui/icons-material";
 import { dashboardItem } from "../components/Dashboard/DashboardItem";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const Dashboard = () => {
   const [val, setVal] = useState(1);
@@ -87,7 +87,8 @@ const Dashboard = () => {
           sx={{
             borderLeft: "4px solid #808080",
             height: "100%",
-            backgroundColor: "skyblue",
+            backgroundColor: "",
+            marginBottom: "20px"
           }}
         >
           {filtered.map((item) => {

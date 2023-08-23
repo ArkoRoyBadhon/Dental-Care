@@ -5,6 +5,7 @@ import App from "../App";
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import OfficeTour from "../pages/OfficeTour";
 
 const routes = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const routes = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/office",
+        element: <OfficeTour />,
       },
       {
         path: "/dashboard",

@@ -294,7 +294,7 @@ const Navbar2 = () => {
                 },
               }}
               underline="none"
-              href="/services"
+              href="/office"
             >
               Office Tour
             </Link>
@@ -314,7 +314,7 @@ const Navbar2 = () => {
                 },
               }}
               underline="none"
-              href="/services"
+              href="/blog"
             >
               Blog
             </Link>

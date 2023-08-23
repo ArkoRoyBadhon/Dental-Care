@@ -1,10 +1,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Box, Divider, Typography, Button } from "@mui/material";
+import {
+  Box,
+  Divider,
+  Typography,
+  Button,
+  TableContainer,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Paper,
+} from "@mui/material";
 import { useState } from "react";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useCreateImagesMutation } from "../../redux/features/office/officeApi";
+import {
+  useCreateImagesMutation,
+  useDeleteImageMutation,
+  useGetImagesQuery,
+} from "../../redux/features/office/officeApi";
 import { useAppSelector } from "../../redux/hook";
+import { IItemData } from "../../pages/OfficeTour";
+import { red, blue } from "@mui/material/colors";
 
 type Inputs = {
   image: any;
@@ -12,6 +30,8 @@ type Inputs = {
 
 const OfficeTour = () => {
   const [createImages] = useCreateImagesMutation();
+  const [deleteImage] = useDeleteImageMutation();
+  const { data: tableData } = useGetImagesQuery(undefined);
   const { user } = useAppSelector((state) => state.persisted.auth);
   const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
   const [image, setImage] = useState<File | null>(null);
@@ -39,7 +59,7 @@ const OfficeTour = () => {
       const officeInfo = {
         data: payload,
       };
-        await createImages(officeInfo);
+      await createImages(officeInfo);
       setImage(null);
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -51,6 +71,11 @@ const OfficeTour = () => {
       setImage(event.target.files[0]);
     }
   };
+
+  const handleImageDelete = async (id:string) => {
+    await deleteImage(id);
+  };
+
   return (
     <Box
       sx={{
@@ -108,10 +133,67 @@ const OfficeTour = () => {
               Upload
             </Button>
           </form>
-
-          {/* <input type="file" accept="image/*" onChange={handleImageChange} />
-          <button onClick={handleUpload}>Upload Image</button> */}
         </Box>
+      </Box>
+      <Divider sx={{ marginTop: "40px" }} />
+      <Box sx={{ marginTop: "20px" }}>
+        <Typography
+          sx={{
+            fontSize: "22px",
+            fontWeight: "500",
+          }}
+        >
+          Manage your Images
+        </Typography>
+        <TableContainer component={Paper} sx={{ background: blue[200] }}>
+          <Table sx={{ minWidth: 650 }} aria-label="simple table">
+            <TableHead>
+              <TableRow
+                sx={{ "&:last-child td, &:last-child th": { border: 1 } }}
+              >
+                <TableCell sx={{ fontWeight: "600" }} align="center">
+                  Image
+                </TableCell>
+                <TableCell sx={{ fontWeight: "600" }} align="center">
+                  Uploaded By
+                </TableCell>
+                <TableCell sx={{ fontWeight: "600" }} align="center">
+                  Created Time
+                </TableCell>
+                <TableCell sx={{ fontWeight: "600" }} align="center">
+                  Action
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {tableData?.data.map((row: IItemData) => (
+                <TableRow key={row?._id} sx={{ "td, th": { border: 1 } }}>
+                  <TableCell align="center" component="th" scope="row">
+                    <img
+                      src={row?.url}
+                      alt="photo"
+                      style={{ width: "80px", height: "60px" }}
+                    />
+                  </TableCell>
+                  <TableCell align="center">{row?.uploadedBy.email}</TableCell>
+                  <TableCell align="center">
+                    {new Date(row?.createdAt).toLocaleDateString()}
+                  </TableCell>
+                  <TableCell align="center">
+                    <Button
+                      variant="contained"
+                      color="error"
+                      sx={{ backgroundColor: red[500] }}
+                      onClick={()=> handleImageDelete(row?._id)}
+                    >
+                      Delete
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
       </Box>
     </Box>
   );
