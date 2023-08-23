@@ -11,6 +11,6 @@ import {
   export const api = createApi({
     reducerPath: "api",
     baseQuery: baseQuery,
-    tagTypes: ["user", "notes"],
+    tagTypes: ["user", "image"],
     endpoints: () => ({}),
   });

@@ -5,7 +5,7 @@ import WelcomeCom from "../components/Home/WelcomeCom";
 import PatientsSay from "../components/Home/PatientsSay";
 import { useEffect } from "react";
 import { useAppDispatch } from "../redux/hook";
-import { useGetUserQuery } from "../redux/features/user/userAPI";
+import { useGetUserQuery } from "../redux/features/user/userApi";
 import { setUser } from "../redux/features/user/userSlice";
 
 const Home = () => {
@@ -14,7 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     if (isSuccess && userData?.data) {
-      dispatch(setUser(userData.data.email));
+      dispatch(setUser(userData.data));
     }
   }, [isSuccess, userData, dispatch]);
   return (

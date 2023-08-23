@@ -18,8 +18,8 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
 import { styled } from "@mui/system";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
-import { useLogOutMutation } from "../redux/features/user/userAPI";
 import { setUser } from "../redux/features/user/userSlice";
+import { useLogOutMutation } from "../redux/features/user/userApi";
 
 const MyDrawer = styled("div")({
   width: 300,
@@ -31,6 +31,8 @@ const Navbar2 = () => {
   const { user } = useAppSelector((state) => state.persisted.auth);
   const dispatch = useAppDispatch();
   const [logOut] = useLogOutMutation();
+
+  console.log("USERDD", user);
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -316,7 +318,7 @@ const Navbar2 = () => {
             >
               Blog
             </Link>
-            {user && (
+            {user?.role === 'admin' && (
               <Link
                 sx={{
                   fontWeight: "600",
@@ -351,7 +353,9 @@ const Navbar2 = () => {
               <MailIcon />
             </Box>
             {user ? (
-              <Box sx={{cursor: "pointer"}} onClick={()=> handleLogout()}>Logout</Box>
+              <Box sx={{ cursor: "pointer" }} onClick={() => handleLogout()}>
+                Logout
+              </Box>
             ) : (
               <Box
                 sx={{

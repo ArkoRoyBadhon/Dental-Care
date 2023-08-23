@@ -3,7 +3,7 @@ import { Box, TextField, Typography, Button } from "@mui/material";
 import { NavLink, useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { useLoginUserMutation } from "../redux/features/user/userAPI";
+import { useLoginUserMutation } from "../redux/features/user/userApi";
 
 type InputLogin = {
   email: string;
