@@ -1,15 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, ButtonBase, Typography } from "@mui/material";
-import { Inbox, Drafts } from "@mui/icons-material";
+import { Inbox } from "@mui/icons-material";
 import { dashboardItem } from "../components/Dashboard/DashboardItem";
 import { useState } from "react";
-import { styled } from "@mui/material/styles";
-
-const CustomBox = styled(ButtonBase)(({ theme }) => ({
-  fontWeight: "600px",
-  fontSize: "32px",
-}));
 
 const style = {
   transition: "background-color 0.3s ease",
