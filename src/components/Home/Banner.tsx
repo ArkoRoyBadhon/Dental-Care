@@ -1,7 +1,9 @@
 import { Box, Button, Typography } from "@mui/material";
 import bannerImg from "../../assets/pexels-anna-shvets-3845625-min.jpg";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
+  const navigate = useNavigate()
   return (
     <>
       <Box
@@ -9,7 +11,6 @@ const Banner = () => {
           marginX: {
             md: "60px",
           },
-          // bgcolor: "skyblue",
           minHeight: "400px",
           display: "flex",
           gap: "20px",
@@ -113,7 +114,7 @@ const Banner = () => {
             }
         }}>
           <Typography component="p">Current Patients login here</Typography>
-          <Button variant="contained" sx={{ borderRadius: "30px" }}>
+          <Button onClick={()=> navigate('/login')} variant="contained" sx={{ borderRadius: "30px" }}>
             Login
           </Button>
         </Box>

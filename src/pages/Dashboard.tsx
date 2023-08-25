@@ -18,7 +18,7 @@ const style = {
   justifyContent: "flex-start",
   paddingX: "20px",
   paddingY: "12px",
-  borderRadius: "5px"
+  borderRadius: "5px",
 };
 
 const Dashboard = () => {
@@ -30,19 +30,44 @@ const Dashboard = () => {
   return (
     <Box
       sx={{
-        paddingX: "60px",
+        paddingX: {
+          xs: "10px",
+          md: "60px"
+        },
         minHeight: "100vh",
       }}
     >
       <Box
         sx={{
           display: "flex",
+          flexDirection: {
+            xs: "column",
+            sm: "column",
+            md: "row",
+            lg: "row",
+          },
           gap: "10px",
           paddingTop: "14px",
           height: "100%",
         }}
       >
-        <Box flex={1} sx={{borderRight: "4px solid gray", paddingRight: "10px"}}>
+        <Box
+          flex={1}
+          sx={{
+            borderRight: {
+              md: "4px solid gray",
+            },
+            borderBottom: {
+              xs: "4px solid gray",
+              md: "0px"
+            },
+            paddingRight: "10px",
+            paddingBottom: {
+              xs: "10px",
+              md: "0px"
+            }
+          }}
+        >
           {/* <CustomBox>Hello</CustomBox> */}
           <ButtonBase
             sx={{
@@ -124,7 +149,7 @@ const Dashboard = () => {
               Office Tour
             </Typography>
           </ButtonBase>
-          <ButtonBase
+          {/* <ButtonBase
             sx={{
               ...style,
               color: val === 5 ? "white" : "#666666",
@@ -143,7 +168,7 @@ const Dashboard = () => {
             >
               About Page
             </Typography>
-          </ButtonBase>
+          </ButtonBase> */}
         </Box>
         <Box
           flex={4}

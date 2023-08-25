@@ -1,4 +1,4 @@
-import About from "./About";
+// import About from "./About";
 import Blog from "./Blog";
 import OfficeTour from "./OfficeTour";
 import Phone from "./Phone";
@@ -23,10 +23,10 @@ export const dashboardItem = [
         id: 4,
         item: <OfficeTour />
     },
-    {
-        id: 5,
-        item: <About />
-    },
+    // {
+    //     id: 5,
+    //     item: <About />
+    // },
 ]
 
 

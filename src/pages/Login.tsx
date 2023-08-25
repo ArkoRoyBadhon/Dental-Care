@@ -4,6 +4,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useLoginUserMutation } from "../redux/features/user/userApi";
+import { toast } from "react-toastify";
 
 type InputLogin = {
   email: string;
@@ -16,9 +17,25 @@ const CustomLink = styled(NavLink)({
 });
 
 const Login = () => {
-  const [loginUser] = useLoginUserMutation();
+  const [loginUser, { isLoading, isSuccess, isError }] = useLoginUserMutation();
   const navigate = useNavigate();
   const location = useLocation();
+
+  if (isSuccess) {
+    toast("User logged in succesfully!", {
+      toastId: "user log in",
+    });
+  }
+  if (isLoading) {
+    toast("Please wait a moment while logging in user!", {
+      toastId: "login pending",
+    });
+  }
+  if (isError) {
+    toast("Email or passwaord not matching", {
+      toastId: "login error",
+    });
+  }
 
   const { register, handleSubmit } = useForm<InputLogin>();
   const onSubmit: SubmitHandler<InputLogin> = async (data) => {
@@ -41,7 +58,10 @@ const Login = () => {
   return (
     <Box
       sx={{
-        paddingX: "60px",
+        paddingX: {
+          xs: "10px",
+          md: "60px",
+        },
         display: "flex",
         justifyContent: "center",
         alignItems: "center",

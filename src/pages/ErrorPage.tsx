@@ -1,11 +1,11 @@
 import { Box } from "@mui/material";
 
 const ErrorPage = () => {
-    return (
-        <Box>
-            404 Not Found
-        </Box>
-    );
+  return (
+    <Box sx={{ minHeight: "90vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      404 Not Found
+    </Box>
+  );
 };
 
 export default ErrorPage;

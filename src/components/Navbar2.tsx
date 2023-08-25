@@ -9,6 +9,7 @@ import {
   ListItemText,
   Typography,
   Stack,
+  colors,
 } from "@mui/material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import MailIcon from "@mui/icons-material/Mail";
@@ -20,6 +21,7 @@ import { styled } from "@mui/system";
 import { useAppDispatch, useAppSelector } from "../redux/hook";
 import { setUser } from "../redux/features/user/userSlice";
 import { useLogOutMutation } from "../redux/features/user/userApi";
+import { toast } from "react-toastify";
 
 const MyDrawer = styled("div")({
   width: 300,
@@ -31,8 +33,6 @@ const Navbar2 = () => {
   const { user } = useAppSelector((state) => state.persisted.auth);
   const dispatch = useAppDispatch();
   const [logOut] = useLogOutMutation();
-
-  console.log("USERDD", user);
 
   const toggleDrawer =
     (open: boolean) => (event: React.KeyboardEvent | React.MouseEvent) => {
@@ -46,6 +46,14 @@ const Navbar2 = () => {
 
       setDrawerOpen(open);
     };
+
+  const handleLogout = async () => {
+    await logOut(undefined);
+    dispatch(setUser(null));
+    toast("User logged out succesfully!", {
+      toastId: "user log out",
+    });
+  };
 
   const drawerContent = (
     <MyDrawer sx={{ paddingTop: "20px" }}>
@@ -75,14 +83,14 @@ const Navbar2 = () => {
               fontWeight: "600",
               ...(currentPath === "/"
                 ? {
-                    textDecoration: "underline",
-                    color: "red",
+                    borderBottom: "2px solid gray",
+                    color: colors.red[500],
                   }
                 : {
-                    color: "black",
+                    color: "#666666",
                   }),
               "&:hover": {
-                textDecoration: "underline",
+                borderBottom: "2px solid gray",
               },
             }}
             primary="Home"
@@ -94,14 +102,14 @@ const Navbar2 = () => {
               fontWeight: "600",
               ...(currentPath === "/about"
                 ? {
-                    textDecoration: "underline",
-                    color: "red",
+                    borderBottom: "2px solid gray",
+                    color: colors.red[500],
                   }
                 : {
-                    color: "black",
+                    color: "#666666",
                   }),
               "&:hover": {
-                textDecoration: "underline",
+                borderBottom: "2px solid gray",
               },
             }}
             primary="About"
@@ -113,14 +121,14 @@ const Navbar2 = () => {
               fontWeight: "600",
               ...(currentPath === "/services"
                 ? {
-                    textDecoration: "underline",
-                    color: "red",
+                    borderBottom: "2px solid gray",
+                    color: colors.red[500],
                   }
                 : {
-                    color: "black",
+                    color: "#666666",
                   }),
               "&:hover": {
-                textDecoration: "underline",
+                borderBottom: "2px solid gray",
               },
             }}
             primary="Services"
@@ -132,14 +140,14 @@ const Navbar2 = () => {
               fontWeight: "600",
               ...(currentPath === "/office"
                 ? {
-                    textDecoration: "underline",
-                    color: "red",
+                    borderBottom: "2px solid gray",
+                    color: colors.red[500],
                   }
                 : {
-                    color: "black",
+                    color: "#666666",
                   }),
               "&:hover": {
-                textDecoration: "underline",
+                borderBottom: "2px solid gray",
               },
             }}
             primary="Office Tour"
@@ -151,27 +159,95 @@ const Navbar2 = () => {
               fontWeight: "600",
               ...(currentPath === "/blog"
                 ? {
-                    textDecoration: "underline",
-                    color: "red",
+                    borderBottom: "2px solid gray",
+                    color: colors.red[500],
                   }
                 : {
-                    color: "black",
+                    color: "#666666",
                   }),
               "&:hover": {
-                textDecoration: "underline",
+                borderBottom: "2px solid gray",
               },
             }}
             primary="Blog"
           />
         </ListItemButton>
       </List>
+      <Divider sx={{ marginX: "10px", marginTop: "14px" }} />
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "start",
+          flexDirection: "column",
+          gap: "10px",
+          paddingX: "10px",
+          marginTop: "10px",
+        }}
+      >
+        <Box>
+          <FacebookIcon />
+          <MailIcon />
+        </Box>
+        {user ? (
+          <Box
+            sx={{ cursor: "pointer", color: "#666666", fontWeight: "600" }}
+            onClick={() => handleLogout()}
+          >
+            Logout
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "10px",
+            }}
+          >
+            <Link
+              sx={{
+                fontWeight: "600",
+                ...(currentPath === "/blog"
+                  ? {
+                      borderBottom: "2px solid gray",
+                      color: colors.red[500],
+                    }
+                  : {
+                      color: "#666666",
+                    }),
+                "&:hover": {
+                  borderBottom: "2px solid gray",
+                },
+              }}
+              underline="none"
+              href="/register"
+            >
+              Register
+            </Link>
+            <Link
+              sx={{
+                fontWeight: "600",
+                ...(currentPath === "/blog"
+                  ? {
+                      borderBottom: "2px solid gray",
+                      color: colors.red[500],
+                    }
+                  : {
+                      color: "#666666",
+                    }),
+                "&:hover": {
+                  borderBottom: "2px solid gray",
+                },
+              }}
+              underline="none"
+              href="/login"
+            >
+              Login
+            </Link>
+          </Box>
+        )}
+      </Box>
     </MyDrawer>
   );
-
-  const handleLogout = async () => {
-    await logOut(undefined);
-    dispatch(setUser(null));
-  };
 
   return (
     <Box>
@@ -221,16 +297,17 @@ const Navbar2 = () => {
             <Link
               sx={{
                 fontWeight: "600",
+
                 ...(currentPath === "/"
                   ? {
-                      textDecoration: "underline",
-                      color: "red",
+                      borderBottom: "2px solid gray",
+                      color: colors.red[500],
                     }
                   : {
-                      color: "black",
+                      color: "#666666",
                     }),
                 "&:hover": {
-                  textDecoration: "underline",
+                  borderBottom: "2px solid gray",
                 },
               }}
               underline="none"
@@ -243,14 +320,14 @@ const Navbar2 = () => {
                 fontWeight: "600",
                 ...(currentPath === "/about"
                   ? {
-                      textDecoration: "underline",
-                      color: "red",
+                      borderBottom: "2px solid gray",
+                      color: colors.red[500],
                     }
                   : {
-                      color: "black",
+                      color: "#666666",
                     }),
                 "&:hover": {
-                  textDecoration: "underline",
+                  borderBottom: "2px solid gray",
                 },
               }}
               underline="none"
@@ -263,14 +340,14 @@ const Navbar2 = () => {
                 fontWeight: "600",
                 ...(currentPath === "/services"
                   ? {
-                      textDecoration: "underline",
-                      color: "red",
+                      borderBottom: "2px solid gray",
+                      color: colors.red[500],
                     }
                   : {
-                      color: "black",
+                      color: "#666666",
                     }),
                 "&:hover": {
-                  textDecoration: "underline",
+                  borderBottom: "2px solid gray",
                 },
               }}
               underline="none"
@@ -283,14 +360,14 @@ const Navbar2 = () => {
                 fontWeight: "600",
                 ...(currentPath === "/office"
                   ? {
-                      textDecoration: "underline",
-                      color: "red",
+                      borderBottom: "2px solid gray",
+                      color: colors.red[500],
                     }
                   : {
-                      color: "black",
+                      color: "#666666",
                     }),
                 "&:hover": {
-                  textDecoration: "underline",
+                  borderBottom: "2px solid gray",
                 },
               }}
               underline="none"
@@ -303,14 +380,14 @@ const Navbar2 = () => {
                 fontWeight: "600",
                 ...(currentPath === "/blog"
                   ? {
-                      textDecoration: "underline",
-                      color: "red",
+                      borderBottom: "2px solid gray",
+                      color: colors.red[500],
                     }
                   : {
-                      color: "black",
+                      color: "#666666",
                     }),
                 "&:hover": {
-                  textDecoration: "underline",
+                  borderBottom: "2px solid gray",
                 },
               }}
               underline="none"
@@ -318,20 +395,20 @@ const Navbar2 = () => {
             >
               Blog
             </Link>
-            {user?.role === 'admin' && (
+            {user?.role === "admin" && (
               <Link
                 sx={{
                   fontWeight: "600",
                   ...(currentPath === "/dashboard"
                     ? {
-                        textDecoration: "underline",
-                        color: "red",
+                        borderBottom: "2px solid gray",
+                        color: colors.red[500],
                       }
                     : {
-                        color: "black",
+                        color: "#666666",
                       }),
                   "&:hover": {
-                    textDecoration: "underline",
+                    borderBottom: "2px solid gray",
                   },
                 }}
                 underline="none"
@@ -353,7 +430,10 @@ const Navbar2 = () => {
               <MailIcon />
             </Box>
             {user ? (
-              <Box sx={{ cursor: "pointer" }} onClick={() => handleLogout()}>
+              <Box
+                sx={{ cursor: "pointer", color: "#666666", fontWeight: "600" }}
+                onClick={() => handleLogout()}
+              >
                 Logout
               </Box>
             ) : (
@@ -369,14 +449,14 @@ const Navbar2 = () => {
                     fontWeight: "600",
                     ...(currentPath === "/blog"
                       ? {
-                          textDecoration: "underline",
-                          color: "red",
+                          borderBottom: "2px solid gray",
+                          color: colors.red[500],
                         }
                       : {
-                          color: "black",
+                          color: "#666666",
                         }),
                     "&:hover": {
-                      textDecoration: "underline",
+                      borderBottom: "2px solid gray",
                     },
                   }}
                   underline="none"
@@ -389,14 +469,14 @@ const Navbar2 = () => {
                     fontWeight: "600",
                     ...(currentPath === "/blog"
                       ? {
-                          textDecoration: "underline",
-                          color: "red",
+                          borderBottom: "2px solid gray",
+                          color: colors.red[500],
                         }
                       : {
-                          color: "black",
+                          color: "#666666",
                         }),
                     "&:hover": {
-                      textDecoration: "underline",
+                      borderBottom: "2px solid gray",
                     },
                   }}
                   underline="none"

@@ -24,6 +24,7 @@ import {
   useDeleteServiceMutation,
   useGetServicesQuery,
 } from "../../redux/features/service/serviceApi";
+import { toast } from "react-toastify";
 
 type Inputs = {
   title: string;
@@ -44,12 +45,44 @@ export type IServiceData = {
 };
 
 const Service = () => {
-  const [createService] = useCreateServiceMutation();
-  const [deleteService] = useDeleteServiceMutation();
+  const [createService, { isLoading, isSuccess, isError }] = useCreateServiceMutation();
+  const [deleteService, { isLoading:isdelLoading, isSuccess:isdelSuccess, isError:isdelError }] = useDeleteServiceMutation();
   const { data: tableData } = useGetServicesQuery(undefined);
   const { user } = useAppSelector((state) => state.persisted.auth);
   const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
   const [image, setImage] = useState<File | null>(null);
+
+  // toast
+  if (isSuccess) {
+    toast("Service Created succesfully!", {
+      toastId: "service create",
+    });
+  }
+  if (isLoading) {
+    toast("Please wait a moment while Creating Service!", {
+      toastId: "service pending",
+    });
+  }
+  if (isError) {
+    toast("Something went wrong", {
+      toastId: "service error",
+    });
+  }
+  if (isdelSuccess) {
+    toast("Service deleted succesfully!", {
+      toastId: "service del create",
+    });
+  }
+  if (isdelLoading) {
+    // toast("Please wait a moment while Creating Service!", {
+    //   toastId: "service del pending",
+    // });
+  }
+  if (isdelError) {
+    toast("Something went wrong", {
+      toastId: "service del error",
+    });
+  }
 
   const { register, handleSubmit, reset } = useForm<Inputs>();
   const onSubmitService: SubmitHandler<Inputs> = async (data) => {
@@ -98,7 +131,9 @@ const Service = () => {
   return (
     <Box
       sx={{
-        padding: "10px",
+        padding: {
+            md: "10px"
+        },
       }}
     >
       <Box>
@@ -117,7 +152,10 @@ const Service = () => {
           <form onSubmit={handleSubmit(onSubmitService)}>
             <Stack rowGap={5} alignItems="center">
               <TextField
-                sx={{ width: "400px" }}
+                sx={{ width: {
+                    xs: "300px",
+                    md: "400px"
+                } }}
                 id="outlined-title"
                 label="Title"
                 type="text"

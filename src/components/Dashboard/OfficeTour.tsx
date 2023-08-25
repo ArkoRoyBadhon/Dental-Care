@@ -23,18 +23,59 @@ import {
 import { useAppSelector } from "../../redux/hook";
 import { IItemData } from "../../pages/OfficeTour";
 import { red, blue } from "@mui/material/colors";
+import { toast } from "react-toastify";
 
 type Inputs = {
   image: any;
 };
 
 const OfficeTour = () => {
-  const [createImages] = useCreateImagesMutation();
-  const [deleteImage] = useDeleteImageMutation();
+  const [createImages, { isLoading, isSuccess, isError }] =
+    useCreateImagesMutation();
+  const [
+    deleteImage,
+    {
+      isLoading: isdelOfficeLoading,
+      isSuccess: isdelOfficeSuccess,
+      isError: isdelOfficeError,
+    },
+  ] = useDeleteImageMutation();
   const { data: tableData } = useGetImagesQuery(undefined);
   const { user } = useAppSelector((state) => state.persisted.auth);
   const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
   const [image, setImage] = useState<File | null>(null);
+
+  // toast
+  if (isSuccess) {
+    toast("Office Image Created succesfully!", {
+      toastId: "office create",
+    });
+  }
+  if (isLoading) {
+    toast("Please wait a moment while Creating Service!", {
+      toastId: "office pending",
+    });
+  }
+  if (isError) {
+    toast("Something went wrong", {
+      toastId: "office error",
+    });
+  }
+  if (isdelOfficeSuccess) {
+    toast("Office Image deleted succesfully!", {
+      toastId: "office del create",
+    });
+  }
+  if (isdelOfficeLoading) {
+    // toast("Please wait a moment while Creating Service!", {
+    //   toastId: "office del pending",
+    // });
+  }
+  if (isdelOfficeError) {
+    toast("Something went wrong", {
+      toastId: "office del error",
+    });
+  }
 
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmitOffice: SubmitHandler<Inputs> = async (data) => {
@@ -72,7 +113,7 @@ const OfficeTour = () => {
     }
   };
 
-  const handleImageDelete = async (id:string) => {
+  const handleImageDelete = async (id: string) => {
     await deleteImage(id);
   };
 
@@ -184,7 +225,7 @@ const OfficeTour = () => {
                       variant="contained"
                       color="error"
                       sx={{ backgroundColor: red[500] }}
-                      onClick={()=> handleImageDelete(row?._id)}
+                      onClick={() => handleImageDelete(row?._id)}
                     >
                       Delete
                     </Button>

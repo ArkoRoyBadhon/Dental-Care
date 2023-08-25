@@ -13,7 +13,7 @@ const ShowCase = () => {
     >
       <Box
         sx={{
-          height: {
+          minHeight: {
             xs: "100vh",
             md: "300px",
           },
@@ -25,6 +25,9 @@ const ShowCase = () => {
             xs: "column",
             md: "row",
           },
+          paddingY: {
+            xs: "20px"
+          }
         }}
       >
         <Box
