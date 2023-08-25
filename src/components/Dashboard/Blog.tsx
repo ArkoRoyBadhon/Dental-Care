@@ -1,10 +1,15 @@
+import { Box } from "@mui/material";
 
 const Blog = () => {
-    return (
-        <div>
-            Blog
-        </div>
-    );
+  return (
+    <Box
+      sx={{
+        padding: "10px",
+      }}
+    >
+      this Section Comming Soon...
+    </Box>
+  );
 };
 
 export default Blog;

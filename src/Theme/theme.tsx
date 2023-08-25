@@ -8,6 +8,9 @@ export const theme = createTheme({
     secondary: {
       main: colors.blue[200],
     },
+    customColor: {
+      main: "#666666"
+    }
   },
   breakpoints: {
     values: {

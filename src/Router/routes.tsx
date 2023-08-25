@@ -6,6 +6,9 @@ import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import OfficeTour from "../pages/OfficeTour";
+import PrivateRoute from "../pages/PrivateRoute";
+import ErrorPage from "../pages/ErrorPage";
+import Services from "../pages/Services";
 
 const routes = createBrowserRouter([
   {
@@ -25,8 +28,17 @@ const routes = createBrowserRouter([
         element: <OfficeTour />,
       },
       {
+        path: "/services",
+        element: <Services />,
+      },
+      {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Dashboard />{" "}
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
@@ -36,9 +48,12 @@ const routes = createBrowserRouter([
         path: "/register",
         element: <Register />,
       },
+      {
+        path: "*",
+        element: <ErrorPage />,
+      },
     ],
   },
-  
 ]);
 
 export default routes;

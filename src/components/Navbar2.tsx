@@ -322,7 +322,7 @@ const Navbar2 = () => {
               <Link
                 sx={{
                   fontWeight: "600",
-                  ...(currentPath === "/blog"
+                  ...(currentPath === "/dashboard"
                     ? {
                         textDecoration: "underline",
                         color: "red",

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, TextField, Typography, Button } from "@mui/material";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useLoginUserMutation } from "../redux/features/user/userApi";
@@ -18,6 +18,7 @@ const CustomLink = styled(NavLink)({
 const Login = () => {
   const [loginUser] = useLoginUserMutation();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const { register, handleSubmit } = useForm<InputLogin>();
   const onSubmit: SubmitHandler<InputLogin> = async (data) => {
@@ -31,10 +32,10 @@ const Login = () => {
     };
 
     const result: any = await loginUser(loginInfo);
-
+    const from = location.state?.from?.pathname || "/";
     if (result?.data?.success) {
       document.cookie = `accessToken=${result?.data?.data?.accessToken}; HttpOnly; SameSite=Strict; Path=/`;
-      navigate("/");
+      navigate(from, { replace: true });
     }
   };
   return (

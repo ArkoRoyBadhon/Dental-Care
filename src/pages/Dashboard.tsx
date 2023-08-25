@@ -1,15 +1,25 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import {
-  Box,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-} from "@mui/material";
+import { Box, ButtonBase, Typography } from "@mui/material";
 import { Inbox, Drafts } from "@mui/icons-material";
 import { dashboardItem } from "../components/Dashboard/DashboardItem";
 import { useState } from "react";
+import { styled } from "@mui/material/styles";
+
+const CustomBox = styled(ButtonBase)(({ theme }) => ({
+  fontWeight: "600px",
+  fontSize: "32px",
+}));
+
+const style = {
+  transition: "background-color 0.3s ease",
+  display: "flex",
+  gap: "14px",
+  justifyContent: "flex-start",
+  paddingX: "20px",
+  paddingY: "12px",
+  borderRadius: "5px"
+};
 
 const Dashboard = () => {
   const [val, setVal] = useState(1);
@@ -32,63 +42,116 @@ const Dashboard = () => {
           height: "100%",
         }}
       >
-        <Box flex={1}>
-          <List
-            sx={
-              {
-                //   position: "fixed",
-              }
-            }
+        <Box flex={1} sx={{borderRight: "4px solid gray", paddingRight: "10px"}}>
+          {/* <CustomBox>Hello</CustomBox> */}
+          <ButtonBase
+            sx={{
+              ...style,
+              color: val === 1 ? "white" : "#666666",
+              backgroundColor: val === 1 ? "#0A208B" : "",
+              "&:hover": { backgroundColor: val !== 1 ? "#F2F4F9" : "" },
+            }}
+            onClick={() => setVal(1)}
+            component="div"
           >
-            <ListItem disablePadding>
-              <ListItemButton onClick={() => setVal(1)}>
-                <ListItemIcon>
-                  <Inbox />
-                </ListItemIcon>
-                <ListItemText primary="Service" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton onClick={() => setVal(2)}>
-                <ListItemIcon>
-                  <Drafts />
-                </ListItemIcon>
-                <ListItemText primary="Blog" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton onClick={() => setVal(3)}>
-                <ListItemIcon>
-                  <Drafts />
-                </ListItemIcon>
-                <ListItemText primary="Phone/Time" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton onClick={() => setVal(4)}>
-                <ListItemIcon>
-                  <Drafts />
-                </ListItemIcon>
-                <ListItemText primary="Office Tour" />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding>
-              <ListItemButton onClick={() => setVal(5)}>
-                <ListItemIcon>
-                  <Drafts />
-                </ListItemIcon>
-                <ListItemText primary="About Page" />
-              </ListItemButton>
-            </ListItem>
-          </List>
+            <Inbox sx={{ fontSize: "28px" }} />
+            <Typography
+              sx={{
+                fontWeight: "600",
+              }}
+              fontSize="1.2rem"
+            >
+              Service
+            </Typography>
+          </ButtonBase>
+          <ButtonBase
+            sx={{
+              ...style,
+              color: val === 2 ? "white" : "#666666",
+              backgroundColor: val === 2 ? "#0A208B" : "",
+              "&:hover": { backgroundColor: val !== 2 ? "#F2F4F9" : "" },
+            }}
+            onClick={() => setVal(2)}
+            component="div"
+          >
+            <Inbox sx={{ fontSize: "28px" }} />
+            <Typography
+              sx={{
+                fontWeight: "600",
+              }}
+              fontSize="1.2rem"
+            >
+              Blog
+            </Typography>
+          </ButtonBase>
+          <ButtonBase
+            sx={{
+              ...style,
+              color: val === 3 ? "white" : "#666666",
+              backgroundColor: val === 3 ? "#0A208B" : "",
+              "&:hover": { backgroundColor: val !== 3 ? "#F2F4F9" : "" },
+            }}
+            onClick={() => setVal(3)}
+            component="div"
+          >
+            <Inbox sx={{ fontSize: "28px" }} />
+            <Typography
+              sx={{
+                fontWeight: "600",
+              }}
+              fontSize="1.2rem"
+            >
+              Phone/Time
+            </Typography>
+          </ButtonBase>
+          <ButtonBase
+            sx={{
+              ...style,
+              color: val === 4 ? "white" : "#666666",
+              backgroundColor: val === 4 ? "#0A208B" : "",
+              "&:hover": { backgroundColor: val !== 4 ? "#F2F4F9" : "" },
+            }}
+            onClick={() => setVal(4)}
+            component="div"
+          >
+            <Inbox sx={{ fontSize: "28px" }} />
+            <Typography
+              sx={{
+                fontWeight: "600",
+              }}
+              fontSize="1.2rem"
+            >
+              Office Tour
+            </Typography>
+          </ButtonBase>
+          <ButtonBase
+            sx={{
+              ...style,
+              color: val === 5 ? "white" : "#666666",
+              backgroundColor: val === 5 ? "#0A208B" : "",
+              "&:hover": { backgroundColor: val !== 5 ? "#F2F4F9" : "" },
+            }}
+            onClick={() => setVal(5)}
+            component="div"
+          >
+            <Inbox sx={{ fontSize: "28px" }} />
+            <Typography
+              sx={{
+                fontWeight: "600",
+              }}
+              fontSize="1.2rem"
+            >
+              About Page
+            </Typography>
+          </ButtonBase>
         </Box>
         <Box
           flex={4}
           sx={{
-            borderLeft: "4px solid #808080",
+            // borderLeft: "4px solid #808080",
             height: "100%",
             backgroundColor: "",
-            marginBottom: "20px"
+            marginBottom: "20px",
           }}
         >
           {filtered.map((item) => {
